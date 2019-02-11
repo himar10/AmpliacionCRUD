@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="a8729fe5-daee-40fb-9e15-bac0d61c4253" name="server" url="http://localhost/repasoCRUD">
+        <fileTransfer port="0" mountedRoot="C:\laragon\www\repasoCRUD" accessType="MOUNT" />
+      </webServer>
+    </option>
+  </component>
+</project>
