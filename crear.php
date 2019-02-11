@@ -52,20 +52,65 @@ $fecha = $_POST['fecha'];
 */
 
 if (isset($nombre,$apellido, $dni, $email, $fecha)){
-    $pdo = Database::connect();
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-    $sql = "INSERT INTO persona (Nombre,Apellidos,DNI,fNacimiento,Correo) values('" . $nombre . "' , '"  . $apellido . "' , '"  . $dni . "' , '"  .  $fecha  . "' , '" . $email ."')";
-    try {
-        $q = $pdo->prepare($sql);
-        $q->execute();
-    } catch (Exception $e) {
-        echo ($e);
+    if (validaRequerido($nombre) && validaRequerido($apellido) && validaRequerido($dni) && validaRequerido($email) && validaRequerido($fecha)){
+        if (valida_texto($nombre) && valida_texto($apellido)) {
+            if (validaEmail($email)) {
+                $pdo = Database::connect();
+                $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                $sql = "INSERT INTO persona (Nombre,Apellidos,DNI,fNacimiento,Correo) values('" . $nombre . "' , '" . $apellido . "' , '" . $dni . "' , '" . $fecha . "' , '" . $email . "')";
+                try {
+                    $q = $pdo->prepare($sql);
+                    $q->execute();
+                    echo("=======  FORMULARIO RECIBIDO CON ÉXITO  =======");
+                } catch (Exception $e) {
+                    echo($e);
+                }
+                Database::disconnect();
+            } else {
+                echo("Email no ha sido validado, inserte uno correcto");
+            }
+        }else{
+            echo ("Tu nombre y apellidos deben tener 
+					al menos 3 letras y únicamente caracteres alfabeticos");
+        }
+    }else{
+        echo ("Tienes algun campo no válido o con espacios.");
     }
-    Database::disconnect();
 }
 
 
+
+//FUNCIONES PARA VALIDACIÓN
+
+function validaEmail($valor){
+    if(filter_var($valor, FILTER_VALIDATE_EMAIL) === FALSE){
+        return false;
+    }else{
+        return true;
+    }
+}
+
+function validaRequerido($valor){
+    if(trim($valor) == ''){
+        return false;
+    }else{
+        return true;
+    }
+}
+
+function valida_texto ($valor){
+        //Añadir un mensaje de error si el nombre es corto.
+        if (!preg_match("/[a-zA-Z]/", $valor)) {
+            return false;
+        }
+
+        if (strlen($_POST["nombre"]) > 3) {
+            return true;
+        }
+        else{
+            return false;
+        }
+}
 
 ?>
 
