@@ -9,29 +9,14 @@
 
 <html>
 <head>
-    <style>
-        ul {
-            list-style-type: none;
-            margin: 0;
-            padding: 0;
-            width: 200px;
-            background-color: #f1f1f1;
-        }
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-        li a {
-            display: block;
-            color: #000;
-            padding: 8px 16px;
-            text-decoration: none;
-        }
-
-        /* Change the link color on hover */
-        li a:hover {
-            background-color: red;
-            color: white;
-        }
-    </style>
+    <link href="css/estilos.css" rel="stylesheet">
 </head>
+
     <body>
 
     <h2>CRUD con PHP</h2>

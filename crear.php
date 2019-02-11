@@ -1,5 +1,14 @@
 
 <html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <link href="css/estilos.css" rel="stylesheet">
+</head>
+
 <body>
 
     <h1>Crear e insertar en la base de datos</h1>
@@ -18,7 +27,6 @@
         <br><br>
         <input type="submit" value="Submit">
     </form>
-
 </body>
 </html>
 
@@ -104,7 +112,7 @@ function valida_texto ($valor){
             return false;
         }
 
-        if (strlen($_POST["nombre"]) > 3) {
+        if (strlen($_POST["nombre"]) > 1) {
             return true;
         }
         else{
